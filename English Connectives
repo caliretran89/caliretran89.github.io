@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Connectives</title>
+    <style>
+        body {
+            font-family: Calibri, sans-serif; /* Changed body font to Calibri */
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Copperplate', serif; /* Changed h1 font to Copperplate */
+            color: #333;
+        }
+        #quiz-container {
+            margin: 20px auto;
+            max-width: 1500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: Arial, sans-serif; /* Added Arial font-family */
+        }
+        button:hover {
+            background-color: #88a6eb;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #88a6eb;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        td {
+            border: 2px solid #ddd;  /* Added border for clearer separation */
+            padding: 8px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .answer {
+            background-color: #f1f1f1;
+            margin: 5px;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>English Connectives</h1>
+    <p>Remember to fuckus on your vacobulary!</p>
+    <div id="quiz-container">
+        <h2>Can you name the connectives?</h2>
+        <input type="text" id="input-answer" placeholder="Enter a connective...">
+        <button onclick="submitAnswer()">Submit</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Opinion</th>
+                    <th>Persuasion</th>
+                    <th>Comparison</th>
+                    <th>Conclusion</th>
+                    <th>Cause & Effect</th>
+                    <th>Illustration</th>
+                    <th>Contrast</th>
+                    <th>Emphasis</th>
+                    <th>Addition</th>
+                    <th>Sequencing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="opinion-answers"></td>
+                    <td id="persuasion-answers"></td>
+                    <td id="comparison-answers"></td>
+                    <td id="conclusion-answers"></td>
+                    <td id="cause-effect-answers"></td>
+                    <td id="illustration-answers"></td>
+                    <td id="contrast-answers"></td>
+                    <td id="emphasis-answers"></td>
+                    <td id="addition-answers"></td>
+                    <td id="sequencing-answers"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const inputAnswer = document.getElementById('input-answer');
+
+        // Connectives categorized by their type
+        const connectivesCategories = {
+            "opinion": ["it would seem", "it appears", "obviously", "possibly", "it seems likely", "presumably", "one might consider"],
+            "persuasion": ["of course", "clearly", "evidently", "surely", "certainly", "decidedly", "indeed", "undoubtedly"],
+            "comparison": ["similarly", "equally", "by the way of contrast", "in comparison", "likewise", "alternatively", "despite this", "unless", "as with"],
+            "conclusion": ["to conclude", "in conclusion", "to sum up", "summarizing", "finally", "on the whole", "overall", "evidently"],
+            "cause-effect": ["because", "so", "consequently", "therefore", "thus"],
+            "illustration": ["for example", "for instance", "such as", "in other words", "to show that", "an instance", "as revealed by", "to show that"],
+            "contrast": ["however", "on the contrary", "nevertheless", "alternatively", "despite this", "yet", "whereas", "except", "apart from"],
+            "emphasis": ["indeed", "in particular", "specifically", "notably", "above all", "more importantly", "especially", "significantly"],
+            "addition": ["also", "furthermore", "in addition", "and", "further", "as well as", "and then"],
+            "sequencing": ["firstly", "next", "then", "finally", "secondly", "initially", "afterwards", "subsequently", "eventually", "previously"]
+        };
+
+        // Function to handle submission
+        function submitAnswer() {
+            const userAnswer = inputAnswer.value.trim().toLowerCase();
+            if (userAnswer) {
+                addAnswerToCategory(userAnswer);
+            }
+            inputAnswer.value = ""; // Clear the input after submitting
+        }
+
+        // Add answers to their respective categories
+        function addAnswerToCategory(answer) {
+            let added = false;
+            // Check each category to see if the answer belongs
+            for (const category in connectivesCategories) {
+                if (connectivesCategories[category].includes(answer)) {
+                    const categoryContainer = document.getElementById(`${category}-answers`);
+                    
+                    // Prevent duplicates in the category
+                    const existingAnswers = categoryContainer.getElementsByClassName('answer');
+                    for (let i = 0; i < existingAnswers.length; i++) {
+                        if (existingAnswers[i].textContent.toLowerCase() === answer) {
+                            alert("This connective has already been added.");
+                            return;
+                        }
+                    }
+
+                    // Add the answer to a new row within the category's column
+                    const newAnswerDiv = document.createElement('div');
+                    newAnswerDiv.classList.add('answer');
+                    newAnswerDiv.textContent = answer;
+                    categoryContainer.appendChild(newAnswerDiv);
+                    added = true;
+                    break;
+                }
+            }
+
+            if (!added) {
+                alert("This connective is not recognized. Please enter a valid connective.");
+            }
+        }
+
+        // Handle Enter key press to submit
+        inputAnswer.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                submitAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
