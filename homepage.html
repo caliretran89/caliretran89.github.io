@@ -142,7 +142,6 @@ function addAnswerToCategory(answer) {
             for (let i = 0; i < existingAnswers.length; i++) {
                 if (existingAnswers[i].textContent.toLowerCase() === answer) {
                     isDuplicate = true;
-                    break;
                 }
             }
             if (isDuplicate) continue; // Skip this category if already present
