@@ -127,6 +127,10 @@
         </table>
     </div>
     <script>
+        let counter = 0;
+        const totalConnectives = 79;
+        const inputAnswer = document.getElementById('input-answer');
+        const counterDisplay = document.getElementById('counter');
         // Connectives categorized by their type
         const connectivesCategories = {
             "opinion": ["it would seem", "it appears", "obviously", "possibly", "it seems likely", "presumably", "one might consider"],
@@ -149,11 +153,6 @@
             }
             inputAnswer.value = ""; // Clear the input after submitting
         }
-
-        let counter = 0;
-        const totalConnectives = 79;
-        const inputAnswer = document.getElementById('input-answer');
-        const counterDisplay = document.getElementById('counter');
 
         function addAnswerToCategory(answer) {
             let added = false;
