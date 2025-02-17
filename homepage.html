@@ -144,67 +144,67 @@
         };
 
     // Function to handle submission
-    function submitAnswer() {
-        const userAnswer = inputAnswer.value.trim().toLowerCase();
-        if (userAnswer) {
-            addAnswerToCategory(userAnswer);
-        }
+        function submitAnswer() {
+            const userAnswer = inputAnswer.value.trim().toLowerCase();
+            if (userAnswer) {
+                addAnswerToCategory(userAnswer);
+            }
         inputAnswer.value = ""; // Clear the input after submitting
-    }
+       }
 
     // Add answers to their respective categories
-    function addAnswerToCategory(answer) {
-        let added = false;
-        let appearedInMultipleCategories = false;
-        let alreadyInCategory = false;
+        function addAnswerToCategory(answer) {
+            let added = false;
+            let appearedInMultipleCategories = false;
+            let alreadyInCategory = false;
 
         // Check each category to see if the answer belongs
-        for (const category in connectivesCategories) {
-            if (connectivesCategories[category].includes(answer)) {
-                const categoryContainer = document.getElementById(`${category}-answers`);
+            for (const category in connectivesCategories) {
+                if (connectivesCategories[category].includes(answer)) {
+                    const categoryContainer = document.getElementById(`${category}-answers`);
                 // Prevent duplicates in the category
-                const existingAnswers = categoryContainer.getElementsByClassName('answer');
+                    const existingAnswers = categoryContainer.getElementsByClassName('answer');
                 
                 // Check if already added in any category
-                for (let i = 0; i < existingAnswers.length; i++) {
-                    if (existingAnswers[i].textContent.toLowerCase() === answer) {
+                    for (let i = 0; i < existingAnswers.length; i++) {
+                        if (existingAnswers[i].textContent.toLowerCase() === answer) {
                         alreadyInCategory = true;
-                        break;
+                            break;
+                        }
                     }
-                }
 
-                if (!alreadyInCategory) {
-                    const newAnswerDiv = document.createElement('div');
-                    newAnswerDiv.classList.add('answer');
-                    newAnswerDiv.textContent = answer;
-                    categoryContainer.appendChild(newAnswerDiv);
-                    added = true;
+                    if (!alreadyInCategory) {
+                        const newAnswerDiv = document.createElement('div');
+                        newAnswerDiv.classList.add('answer');
+                        newAnswerDiv.textContent = answer;
+                        categoryContainer.appendChild(newAnswerDiv);
+                        added = true;
                     
                     // Increment counter if it's in more than one category
-                    if (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer)) {
-                        if (appearedInMultipleCategories) {
-                            counter += 1;  // Count only once for each additional category
+                        if (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer)) {
+                            if (appearedInMultipleCategories) {
+                                counter += 1;  // Count only once for each additional category
+                            } else {
+                                counter += 2;  // First appearance counts double
+                                appearedInMultipleCategories = true;
+                            }
                         } else {
-                            counter += 2;  // First appearance counts double
-                            appearedInMultipleCategories = true;
+                            counter += 1;
                         }
-                    } else {
-                        counter += 1;
+                        counterDisplay.textContent = counter;
                     }
-                    counterDisplay.textContent = counter;
                 }
             }
-        }
         
         // If the answer wasn't added, show an alert
-        if (!added) {
-            alert("This connective is not recognized. Please enter a valid connective.");
-        }
+            if (!added) {
+                alert("This connective is not recognized. Please enter a valid connective.");
+            }
 
         // If all connectives are named, congratulate the user
-        if (counter == totalConnectives) {
-            alert("Well done! You've named all the connectives!");
-        }
+            if (counter == totalConnectives) {
+                alert("Well done! You've named all the connectives!");
+            }
     }
 
     // Handle Enter key press to submit
