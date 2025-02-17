@@ -204,7 +204,10 @@ appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite t
                     if (appearedInMultipleCategories) {
     counter += 1;
 } else {
-    counter += (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) ? 2 : 1);
+    counter += (['indeed'].includes(answer) ? 2 : 1);
+    counter += (['finally'].includes(answer) ? 2 : 1);
+    counter += (['alternatively'].includes(answer) ? 2 : 1);
+    counter += (['despite this'].includes(answer) ? 2 : 1);
 }
                     counterDisplay.textContent = counter;
 
