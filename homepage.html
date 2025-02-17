@@ -201,14 +201,11 @@ appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite t
                     categoryContainer.appendChild(newAnswerDiv);
                     added = true;
 
-                    if (appearedInMultipleCategories) {
-    counter += 1;
-} else {
-    counter += (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) ? 2 : 1);
-}
+                    if (appearedInMultipleCategories) {counter += 1;} 
+		    else {counter += (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) ? 2 : 1);}
                     counterDisplay.textContent = counter;
-
-                    if (counter === totalConnectives) {
+		    while (counter =! totalConnectives) {counter == counter+1}
+                    if (counter == totalConnectives) {
                         alert("Well done! You've named all the connectives!");
                     }
                 }
