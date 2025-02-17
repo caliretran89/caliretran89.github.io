@@ -6,13 +6,13 @@
     <title>English Connectives Quiz</title>
     <style>
         body {
-            font-family: Calibri, sans-serif;
+            font-family: Calibri, sans-serif; /* Changed body font to Calibri */
             background-color: #f4f4f9;
             text-align: center;
             padding: 20px;
         }
         h1 {
-            font-family: 'Copperplate', serif;
+            font-family: 'Copperplate', serif; /* Changed h1 font to Copperplate */
             color: #333;
             padding: 20px 25px;
             background-color: #baccf5;
@@ -40,20 +40,20 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif; /* Added Arial font-family */
         }
         button:hover {
             background-color: #4d614d;
         }
-        a {
+ 	    a {
             padding: 10px 15px;
             background-color: #ffffff;
             color: black;
             border: none;
             cursor: pointer;
             font-size: 16px;
-            font-family: Arial, sans-serif;
-            text-decoration: none;
+            font-family: Arial, sans-serif; /* Added Arial font-family */
+	    text-decoration: none
         }
         a:hover {
             background-color: #baccf5;
@@ -70,7 +70,7 @@
             text-align: center;
         }
         td {
-            border: 2px solid #ddd;
+            border: 2px solid #ddd;  /* Added border for clearer separation */
             padding: 8px;
             text-align: center;
             vertical-align: top;
@@ -89,12 +89,11 @@
     <h1>English Connectives</h1>
     <p>Remember to fuckus on your vacobulary!</p>
     <div id="quiz-container">
-        <div><a href="index.html">Back to Types of Connectives</a></div>
-        <h2>Can you name the connectives?</h2>
+        <div><a href="index.html">Back to Types of Connectives</a href></div>
+	<h2>Can you name the connectives?</h2>
         <input type="text" id="input-answer" placeholder="Enter a connective...">
         <button onclick="submitAnswer()">Submit</button>
         <h3>Score: <span id="counter">0</span> / 79</h3>
-
         <table>
             <thead>
                 <tr>
@@ -126,11 +125,10 @@
             </tbody>
         </table>
     </div>
+
     <script>
-        let counter = 0;
-        const totalConnectives = 79;
         const inputAnswer = document.getElementById('input-answer');
-        const counterDisplay = document.getElementById('counter');
+
         // Connectives categorized by their type
         const connectivesCategories = {
             "opinion": ["it would seem", "it appears", "obviously", "possibly", "it seems likely", "presumably", "one might consider"],
@@ -146,15 +144,6 @@
         };
 
         // Function to handle submission
-        function submitAnswer() {
-            const userAnswer = inputAnswer.value.trim().toLowerCase();
-            if (userAnswer) {
-                addAnswerToCategory(userAnswer);
-            }
-            inputAnswer.value = ""; // Clear the input after submitting
-        }
-
-               // Function to handle submission
         function submitAnswer() {
             const userAnswer = inputAnswer.value.trim().toLowerCase();
             if (userAnswer) {
@@ -179,8 +168,21 @@
                             return;
                         }
                     }
-        function addAnswerToCategory(answer) {
-            let added = false;
+
+                    // Add the answer to a new row within the category's column
+                    const newAnswerDiv = document.createElement('div');
+                    newAnswerDiv.classList.add('answer');
+                    newAnswerDiv.textContent = answer;
+                    categoryContainer.appendChild(newAnswerDiv);
+                    added = true;
+                    break;
+                }
+            }
+        let counter = 0;
+        const totalConnectives = 79;
+        const counterDisplay = document.getElementById('counter');
+
+        let appearedInMultipleCategories = false;
             for (const category in connectivesCategories) {
                 if (connectivesCategories[category].includes(answer)) {
                     const categoryContainer = document.getElementById(`${category}-answers`);
@@ -211,12 +213,12 @@ appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite t
                     }
                 }
             }
-
             if (!added) {
-                alert("This connective doesn't fit into any category.");
+                alert("This connective is not recognized. Please enter a valid connective.");
             }
         }
 
+        // Handle Enter key press to submit
         inputAnswer.addEventListener("keydown", function (event) {
             if (event.key === "Enter") {
                 submitAnswer();
