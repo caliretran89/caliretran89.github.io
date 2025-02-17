@@ -145,13 +145,18 @@
                         }
                     }
                     if (isDuplicate) continue;
+appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) && appearedInMultipleCategories ? true : appearedInMultipleCategories;
                     const newAnswerDiv = document.createElement('div');
                     newAnswerDiv.classList.add('answer');
                     newAnswerDiv.textContent = answer;
                     categoryContainer.appendChild(newAnswerDiv);
                     added = true;
 
-                    counter += (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) ? 2 : 1);
+                    if (appearedInMultipleCategories) {
+    counter += 1;
+} else {
+    counter += (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) ? 2 : 1);
+}
                     counterDisplay.textContent = counter;
 
                     if (counter === totalConnectives) {
