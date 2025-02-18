@@ -150,7 +150,7 @@
             if (userAnswer) {
                 addAnswerToCategory(userAnswer);
             }
-            inputAnswer.value = ""; // Clear the input after submitting
+        inputAnswer.value = ""; // Clear the input after submitting
         }
 
         // Add answers to their respective categories
@@ -193,7 +193,6 @@
                         if (existingAnswers[i].textContent.toLowerCase() === answer) {
                             isDuplicate = true;
                         }
-                    inputAnswer.value = ""; // Clear the input after submitting
                     }
                     if (isDuplicate) continue;
 appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) && appearedInMultipleCategories ? true : appearedInMultipleCategories;
@@ -210,7 +209,6 @@ appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite t
                     if (counter == totalConnectives) {
                         alert("Well done! You've named all the connectives!");
                     }
-                    inputAnswer.value = ""; // Clear the input after submitting
                 }
             }
             if (!added) {
