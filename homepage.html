@@ -127,6 +127,29 @@
         </table>
     </div>
     <script>
+        // Connectives categorized by their type
+        const connectivesCategories = {
+            "opinion": ["it would seem", "it appears", "obviously", "possibly", "it seems likely", "presumably", "one might consider"],
+            "persuasion": ["of course", "clearly", "evidently", "surely", "certainly", "decidedly", "indeed", "undoubtedly"],
+            "comparison": ["similarly", "equally", "by the way of contrast", "in comparison", "likewise", "alternatively", "despite this", "unless", "as with"],
+            "conclusion": ["to conclude", "in conclusion", "to sum up", "summarizing", "finally", "on the whole", "overall", "evidently"],
+            "cause-effect": ["because", "so", "consequently", "therefore", "thus"],
+            "illustration": ["for example", "for instance", "such as", "in other words", "to show that", "an instance", "as revealed by", "to show that"],
+            "contrast": ["however", "on the contrary", "nevertheless", "alternatively", "despite this", "yet", "whereas", "except", "apart from"],
+            "emphasis": ["indeed", "in particular", "specifically", "notably", "above all", "more importantly", "especially", "significantly"],
+            "addition": ["also", "furthermore", "in addition", "and", "further", "as well as", "and then"],
+            "sequencing": ["firstly", "next", "then", "finally", "secondly", "initially", "afterwards", "subsequently", "eventually", "previously"]
+        };
+
+        // Function to handle submission
+        function submitAnswer() {
+            const userAnswer = inputAnswer.value.trim().toLowerCase();
+            if (userAnswer) {
+                addAnswerToCategory(userAnswer);
+            }
+            inputAnswer.value = ""; // Clear the input after submitting
+        }
+
         let counter = 0;
         const totalConnectives = 79;
         const inputAnswer = document.getElementById('input-answer');
