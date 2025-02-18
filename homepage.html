@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,54 +132,7 @@
         const totalConnectives = 79;
         const inputAnswer = document.getElementById('input-answer');
         const counterDisplay = document.getElementById('counter');
-        // Connectives categorized by their type
-        const connectivesCategories = {
-            "opinion": ["it would seem", "it appears", "obviously", "possibly", "it seems likely", "presumably", "one might consider"],
-            "persuasion": ["of course", "clearly", "evidently", "surely", "certainly", "decidedly", "indeed", "undoubtedly"],
-            "comparison": ["similarly", "equally", "by the way of contrast", "in comparison", "likewise", "alternatively", "despite this", "unless", "as with"],
-            "conclusion": ["to conclude", "in conclusion", "to sum up", "summarizing", "finally", "on the whole", "overall", "evidently"],
-            "cause-effect": ["because", "so", "consequently", "therefore", "thus"],
-            "illustration": ["for example", "for instance", "such as", "in other words", "to show that", "an instance", "as revealed by", "to show that"],
-            "contrast": ["however", "on the contrary", "nevertheless", "alternatively", "despite this", "yet", "whereas", "except", "apart from"],
-            "emphasis": ["indeed", "in particular", "specifically", "notably", "above all", "more importantly", "especially", "significantly"],
-            "addition": ["also", "furthermore", "in addition", "and", "further", "as well as", "and then"],
-            "sequencing": ["firstly", "next", "then", "finally", "secondly", "initially", "afterwards", "subsequently", "eventually", "previously"]
-        };
 
-        // Function to handle submission
-        function submitAnswer() {
-            const userAnswer = inputAnswer.value.trim().toLowerCase();
-            if (userAnswer) {
-                addAnswerToCategory(userAnswer);
-            }
-            inputAnswer.value = ""; // Clear the input after submitting
-        }
-
-               // Function to handle submission
-        function submitAnswer() {
-            const userAnswer = inputAnswer.value.trim().toLowerCase();
-            if (userAnswer) {
-                addAnswerToCategory(userAnswer);
-            }
-            inputAnswer.value = ""; // Clear the input after submitting
-        }
-
-        // Add answers to their respective categories
-        function addAnswerToCategory(answer) {
-            let added = false;
-            // Check each category to see if the answer belongs
-            for (const category in connectivesCategories) {
-                if (connectivesCategories[category].includes(answer)) {
-                    const categoryContainer = document.getElementById(`${category}-answers`);
-                    
-                    // Prevent duplicates in the category
-                    const existingAnswers = categoryContainer.getElementsByClassName('answer');
-                    for (let i = 0; i < existingAnswers.length; i++) {
-                        if (existingAnswers[i].textContent.toLowerCase() === answer) {
-                            alert("This connective has already been added.");
-                            return;
-                        }
-                    }
         function addAnswerToCategory(answer) {
             let added = false;
             for (const category in connectivesCategories) {
