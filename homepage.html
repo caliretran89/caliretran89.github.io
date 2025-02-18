@@ -93,7 +93,7 @@
         <h2>Can you name the connectives?</h2>
         <input type="text" id="input-answer" placeholder="Enter a connective...">
         <button onclick="submitAnswer()">Submit</button>
-        <h3>Score: <span id="counter">0</span> / 66</h3>
+        <h3>Score: <span id="counter">0</span> / 79</h3>
 
         <table>
             <thead>
@@ -126,31 +126,11 @@
             </tbody>
         </table>
     </div>
-
     <script>
-        const connectivesCategories = {
-            "opinion": ["it would seem", "it appears", "obviously", "possibly", "it seems likely", "presumably", "one might consider"],
-            "persuasion": ["of course", "clearly", "evidently", "surely", "certainly", "decidedly", "indeed", "undoubtedly"],
-            "comparison": ["similarly", "equally", "by the way of contrast", "in comparison", "likewise", "alternatively", "despite this", "unless", "as with"],
-            "conclusion": ["to conclude", "in conclusion", "to sum up", "summarizing", "finally", "on the whole", "overall", "evidently"],
-            "cause-effect": ["because", "so", "consequently", "therefore", "thus"],
-            "illustration": ["for example", "for instance", "such as", "in other words", "to show that", "an instance", "as revealed by", "to show that"],
-            "contrast": ["however", "on the contrary", "nevertheless", "alternatively", "despite this", "yet", "whereas", "except", "apart from"],
-            "emphasis": ["indeed", "in particular", "specifically", "notably", "above all", "more importantly", "especially", "significantly"],
-            "addition": ["also", "furthermore", "in addition", "and", "further", "as well as", "and then"],
-            "sequencing": ["firstly", "next", "then", "finally", "secondly", "initially", "afterwards", "subsequently", "eventually", "previously"]
-        };
-
         let counter = 0;
-        const totalConnectives = 66;
-
-        function submitAnswer() {
-            const userAnswer = inputAnswer.value.trim().toLowerCase();
-            if (userAnswer) {
-                addAnswerToCategory(userAnswer);
-            }
-            inputAnswer.value = "";
-        }
+        const totalConnectives = 79;
+        const inputAnswer = document.getElementById('input-answer');
+        const counterDisplay = document.getElementById('counter');
 
         function addAnswerToCategory(answer) {
             let added = false;
@@ -162,24 +142,39 @@
                     for (let i = 0; i < existingAnswers.length; i++) {
                         if (existingAnswers[i].textContent.toLowerCase() === answer) {
                             isDuplicate = true;
-                            break;
                         }
                     }
-                    if (!isDuplicate) {
-                        const newAnswerDiv = document.createElement('div');
-                        newAnswerDiv.classList.add('answer');
-                        newAnswerDiv.textContent = answer;
-                        categoryContainer.appendChild(newAnswerDiv);
-                        counter++;
-                        document.getElementById("counter").textContent = counter;
-                        added = true;
-                        if (counter === totalConnectives) {
-                            setTimeout(() => alert("Well done! All connectives added!"), 300);
-                        }
+                    if (isDuplicate) continue;
+appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) && appearedInMultipleCategories ? true : appearedInMultipleCategories;
+                    const newAnswerDiv = document.createElement('div');
+                    newAnswerDiv.classList.add('answer');
+                    newAnswerDiv.textContent = answer;
+                    categoryContainer.appendChild(newAnswerDiv);
+                    added = true;
+
+                    if (appearedInMultipleCategories) {
+    counter += 1;
+} else {
+    counter += (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) ? 2 : 1);
+}
+                    counterDisplay.textContent = counter;
+
+                    if (counter === totalConnectives) {
+                        alert("Well done! You've named all the connectives!");
                     }
                 }
             }
+
+            if (!added) {
+                alert("This connective doesn't fit into any category.");
+            }
         }
+
+        inputAnswer.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                submitAnswer();
+            }
+        });
     </script>
 </body>
 </html>
