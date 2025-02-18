@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -180,10 +179,6 @@
                     break;
                 }
             }
-        let counter = 0;
-        const totalConnectives = 79;
-        const counterDisplay = document.getElementById('counter');
-
         let appearedInMultipleCategories = false;
             for (const category in connectivesCategories) {
                 if (connectivesCategories[category].includes(answer)) {
@@ -202,16 +197,6 @@ appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite t
                     newAnswerDiv.textContent = answer;
                     categoryContainer.appendChild(newAnswerDiv);
                     added = true;
-
-                    if (appearedInMultipleCategories) {counter += 1;} 
-		    else {counter += (['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) ? 2 : 1);}
-                    counterDisplay.textContent = counter;
-		    while (counter =! totalConnectives) {counter == counter+1}
-                    if (counter == totalConnectives) {
-                        alert("Well done! You've named all the connectives!");
-                    }
-                }
-            }
             if (!added) {
                 alert("This connective is not recognized. Please enter a valid connective.");
             }
