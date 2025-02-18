@@ -193,6 +193,7 @@
                         if (existingAnswers[i].textContent.toLowerCase() === answer) {
                             isDuplicate = true;
                         }
+                    inputAnswer.value = ""; // Clear the input after submitting
                     }
                     if (isDuplicate) continue;
 appearedInMultipleCategories = ['indeed', 'finally', 'alternatively', 'despite this'].includes(answer) && appearedInMultipleCategories ? true : appearedInMultipleCategories;
